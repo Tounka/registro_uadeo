@@ -3,9 +3,44 @@ import {DisplayPrincipalStyled, ContenedorPrincipal} from '../componentes/Displa
 import { TitularPrincipal } from '../componentes/Textos';
 import { BtnSwitchPaginaFlotante, BtnSubmit } from '../componentes/BotonesPrincipales';
 import {InputFormulario} from '../componentes/InputFormulario'
-import {Formik, Form, Field, ErrorMessage} from 'formik';
+import {Formik, Form} from 'formik';
 import { SelectComponent } from '../componentes/InputFormulario';
+import { collection, addDoc, getDocs, query, where } from 'firebase/firestore';
+import { firestore } from '../firebase'; // Asegúrate de ajustar la ruta correcta
 const AdminCarreras = () =>{
+
+    const handleSubmit = async (values, { setSubmitting, resetForm }) => {
+        try {
+          // Validar si la matrícula ya existe en la base de datos
+          const matriculaQuery = query(collection(firestore, 'estudiantes'), where('matricula', '==', values.Matricula));
+          const matriculaDocs = await getDocs(matriculaQuery);
+      
+          if (matriculaDocs.size > 0) {
+            // La matrícula ya existe
+            alert("El usuario ya esta registrado");
+            return;
+          }
+      
+          // La matrícula no existe, agregar el nuevo documento a la colección 'estudiantes' en Firestore
+          const docRef = await addDoc(collection(firestore, 'estudiantes'), {
+            matricula: values.Matricula,
+            nombre: values.Nombre,
+            carrera: values.Carrera,
+            semestre: values.Semestre,
+            
+
+
+          });
+      
+          console.log('Documento agregado con ID:', docRef.id);
+        } catch (error) {
+          console.error('Error al agregar el documento:', error.message);
+        } finally {
+          setSubmitting(false);
+          resetForm();
+        }
+      };
+      
     return(
         <DisplayPrincipalStyled>
             <TitularPrincipal texto='Registrar'/>
@@ -14,6 +49,7 @@ const AdminCarreras = () =>{
                 initialValues={
                     {Matricula:'', Nombre:'', Carrera:'', Semestre: 1}
                 }
+                onSubmit={handleSubmit}
                 validate={(values) => {
                     const errors = {};
                 
@@ -42,10 +78,7 @@ const AdminCarreras = () =>{
                 
                     return errors;
                   }}
-                  onSubmit={(values) => {
-                    // La función onSubmit solo se ejecutará si no hay errores de validación
-                    console.log("Formulario enviado con éxito:", values);
-                  }}
+   
             >
 
                 <ContenedorPrincipal padding>
