@@ -5,20 +5,19 @@ import { BtnSwitchPaginaFlotante, BtnSubmit } from '../componentes/BotonesPrinci
 import {InputFormulario, LabelForm} from '../componentes/InputFormulario'
 import {Formik, Form} from 'formik';
 import { collection, getDocs, query, where } from 'firebase/firestore';
-import { firestore } from '../firebase'; // Asegúrate de ajustar la ruta correcta
+import { firestore } from '../firebase'; 
 import { useState } from 'react';
 const AdminCarreras = () =>{
     const [estadoEstudiante, setEstadoEstudiante] = useState({ Nombre: '', Semestre: '', Carrera: '' });
 
     const handleSubmit = async (values, { setSubmitting, resetForm }) => {
         try {
-          // Validar si la matrícula ya existe en la base de datos
           const matriculaQuery = query(collection(firestore, 'estudiantes'), where('matricula', '==', values.Matricula));
           const matriculaDocs = await getDocs(matriculaQuery);
       
           if (matriculaDocs.size > 0) {
-            // La matrícula ya existe
-            alert("El usuario ya esta registrado");
+            // La matrícula existe
+            
             const estudiante = matriculaDocs.docs[0].data();
             console.log(estudiante)
             setEstadoEstudiante({Nombre:estudiante.nombre, Semestre:estudiante.semestre, Carrera:estudiante.carrera})
