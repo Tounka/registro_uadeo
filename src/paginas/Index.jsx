@@ -9,7 +9,7 @@ const Index = () =>{
             <ContenedorPrincipal padding={false}>
 
                 <BtnSwitchPaginaPrincipal bg= 'amarillo' color='negro' texto='Registrar' path='/Registrar'/>
-                <BtnSwitchPaginaPrincipal bg= 'azul' color='blanco' texto='Ingresar' path='/AgregarCarrera'/>
+                <BtnSwitchPaginaPrincipal bg= 'azul' color='blanco' texto='Ingresar' path='/Ingresar'/>
                 
             </ContenedorPrincipal>
         </DisplayPrincipalStyled>

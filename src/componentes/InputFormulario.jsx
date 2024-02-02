@@ -19,12 +19,17 @@ const InputFormularioStyled = styled.div`
     color: var(--blanco);
     width: 35%;
   }
-  select{
+  select, .contenedorDato{
     width: 100%;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
     background-color: var(--gris);
     color: black;
+  }
+  .contenedorDato{
+    display:flex;
+    justify-content:center;
+    align-items:center;
   }
 `;
 
@@ -84,5 +89,16 @@ export const SelectComponent = ({ label, name }) => {
     </InputFormularioStyled>
   );
 };
+
+export const LabelForm = ({Campo, Nombre})=>{
+  return(
+    <InputFormularioStyled>
+    <label >{Campo}</label>
+    <div className="contenedorDato">
+      {Nombre}
+    </div>
+  </InputFormularioStyled>
+  );
+}
 
 
