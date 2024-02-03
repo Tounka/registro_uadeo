@@ -32,7 +32,8 @@ const AdminCarreras = () =>{
 
           });
       
-          console.log('Documento agregado con ID:', docRef.id);
+          
+          //console.log('Documento agregado con ID:', docRef.id);
         } catch (error) {
           console.error('Error al agregar el documento:', error.message);
         } finally {
@@ -84,6 +85,7 @@ const AdminCarreras = () =>{
                 <ContenedorPrincipal padding>
                     <Form>
                         <InputFormulario id='Matricula' name='Matricula' type='number'  textoLbl='Matricula'/>
+                        
                         <InputFormulario id='Nombre' name='Nombre' type='text' textoLbl='Nombre'/>
 
                         <SelectComponent  label= 'Carrera' name='Carrera' />

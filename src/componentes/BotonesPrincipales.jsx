@@ -65,6 +65,8 @@ const BtnSubmitStyled = styled.button`
     padding:20px;
     background-color:var(--rojo);
     border-radius: 20px;
+    width:100%;
+    margin:20px 0;
     display:flex;
     justify-content:center;
     align-items:center;
@@ -72,9 +74,9 @@ const BtnSubmitStyled = styled.button`
     font-size: 26px;
     font-weight:bold;
 `
-export const BtnSubmit = ({texto}) =>{
-    return(
-        <BtnSubmitStyled>
+export const BtnSubmit = ({ texto, type = 'submit' }) => {
+    return (
+        <BtnSubmitStyled type={type}>
             {texto}
         </BtnSubmitStyled>
     );

@@ -4,30 +4,39 @@ import { TitularPrincipal } from '../componentes/Textos';
 import { BtnSwitchPaginaFlotante, BtnSubmit } from '../componentes/BotonesPrincipales';
 import { InputFormulario } from '../componentes/InputFormulario';
 import { Formik, Form } from 'formik';
-import { collection, addDoc } from 'firebase/firestore';
+import { collection, addDoc} from 'firebase/firestore';
 import { firestore } from '../firebase'; // Asegúrate de ajustar la ruta correcta
 
+const ActualizarDatos = () =>{
+  
+}
 
 const AdminCarreras = () => {
   const initialValues = {
     carrera: '',
   };
 
-  const handleSubmit = async (values, { setSubmitting }) => {
+  const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
       // Agregar el nuevo documento a la colección 'carreras' en Firestore
       const docRef = await addDoc(collection(firestore, 'carrera'), {
         carrera: values.carrera,
+
         // Agrega otras propiedades según sea necesario
       });
+        
+    
 
-      console.log('Documento agregado con ID:', docRef.id);
+      
     } catch (error) {
       console.error('Error al agregar el documento:', error.message);
     } finally {
       setSubmitting(false);
+      resetForm();
     }
   };
+
+
 
   return (
     <DisplayPrincipalStyled>
@@ -46,11 +55,15 @@ const AdminCarreras = () => {
           <Form>
             <InputFormulario textoLbl='Carrera' type='text' id='Carrera' name='carrera' />
             
-            <BtnSubmit texto='Agregar' />
+            <BtnSubmit type="submit" texto='Agregar' />
           </Form>
           
         </Formik>
-        <BtnSubmit texto='Generar Reporte' />
+        <div >
+          <BtnSubmit type="button" texto='Generar Reporte' />
+          <BtnSubmit type='button' texto='Actualizar Datos' path='/Ingresar' />
+        </div>
+  
       </ContenedorPrincipal>
     </DisplayPrincipalStyled>
   );

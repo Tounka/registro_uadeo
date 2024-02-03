@@ -80,7 +80,7 @@ export const SelectComponent = ({ label, name }) => {
       <Field as="select" id={name} name={name} value={values[name]} onChange={handleChange}>
         <option value="">Selecciona...</option>
         {carreras.map(({ id, carrera }) => (
-          <option key={id} value={id}>
+          <option key={id} value={carrera}>
             {carrera}
           </option>
         ))}
