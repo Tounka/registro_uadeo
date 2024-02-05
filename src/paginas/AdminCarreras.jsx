@@ -4,12 +4,14 @@ import { TitularPrincipal } from '../componentes/Textos';
 import { BtnSwitchPaginaFlotante, BtnSubmit } from '../componentes/BotonesPrincipales';
 import { InputFormulario } from '../componentes/InputFormulario';
 import { Formik, Form } from 'formik';
+import { Link } from 'react-router-dom';
+import styled from "styled-components";
 import { collection, addDoc} from 'firebase/firestore';
 import { firestore } from '../firebase'; // Asegúrate de ajustar la ruta correcta
+const LinkStyled = styled(Link)`
+  text-decoration:none;
+`
 
-const ActualizarDatos = () =>{
-  
-}
 
 const AdminCarreras = () => {
   const initialValues = {
@@ -61,7 +63,9 @@ const AdminCarreras = () => {
         </Formik>
         <div >
           <BtnSubmit type="button" texto='Generar Reporte' />
-          <BtnSubmit type='button' texto='Actualizar Datos' path='/Ingresar' />
+          <LinkStyled to="/Actualizar">
+            <BtnSubmit type='button' texto='Actualizar Datos' />
+        </LinkStyled>
         </div>
   
       </ContenedorPrincipal>
