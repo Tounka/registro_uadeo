@@ -6,8 +6,8 @@ import { InputFormulario } from '../componentes/InputFormulario';
 import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
-import { collection, addDoc} from 'firebase/firestore';
-import { firestore } from '../firebase'; // Asegúrate de ajustar la ruta correcta
+import { collection, addDoc,getDocs, query, orderBy} from 'firebase/firestore';
+import { firestore} from '../firebase'; // Asegúrate de ajustar la ruta correcta
 const LinkStyled = styled(Link)`
   text-decoration:none;
 `
@@ -38,7 +38,23 @@ const AdminCarreras = () => {
     }
   };
 
-
+  const funcion = async (values) => {
+    try {
+      const matriculaQuery = query(collection(firestore, 'estudiantes'), orderBy("matricula", "asc"));
+      const matriculaDocs = await getDocs(matriculaQuery);
+  
+      if (matriculaDocs.docs.length > 0) {
+        console.log(matriculaDocs.docs);
+        matriculaDocs.docs.forEach((documento, index) => {
+          console.log(`Documento ${index}:`, documento.data());
+        });
+      } else {
+        console.log('No se encontraron documentos');
+      }
+    } catch (error) {
+      console.error('Error al obtener documentos:', error.message);
+    }
+  };
 
   return (
     <DisplayPrincipalStyled>
@@ -62,7 +78,7 @@ const AdminCarreras = () => {
           
         </Formik>
         <div >
-          <BtnSubmit type="button" texto='Generar Reporte' />
+          <BtnSubmit type="button" texto='Generar Reporte' funcionOnClick={funcion} />
           <LinkStyled to="/Actualizar">
             <BtnSubmit type='button' texto='Actualizar Datos' />
         </LinkStyled>

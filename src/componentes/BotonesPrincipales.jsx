@@ -74,9 +74,10 @@ const BtnSubmitStyled = styled.button`
     font-size: 26px;
     font-weight:bold;
 `
-export const BtnSubmit = ({ texto, type = 'submit' }) => {
+export const BtnSubmit = ({ texto, type = 'submit', funcionOnClick=() => ''}) => {
+    
     return (
-        <BtnSubmitStyled type={type}>
+        <BtnSubmitStyled type={type} onClick={funcionOnClick}>
             {texto}
         </BtnSubmitStyled>
     );

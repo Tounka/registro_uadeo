@@ -4,8 +4,8 @@ import { TitularPrincipal } from '../componentes/Textos';
 import { BtnSwitchPaginaFlotante, BtnSubmit } from '../componentes/BotonesPrincipales';
 import {InputFormulario, SelectComponent} from '../componentes/InputFormulario'
 import {Formik, Form} from 'formik';
-import { collection, getDocs, query, where, updateDoc,doc} from 'firebase/firestore';
-import { firestore } from '../firebase'; 
+import { collection, getDocs, where, updateDoc,doc,query} from 'firebase/firestore';
+import { firestore} from '../firebase'; 
 
 const AdminCarreras = () =>{
 
