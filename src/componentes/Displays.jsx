@@ -12,6 +12,10 @@ export const DisplayPrincipalStyled = styled.div`
 
     
 `
+export const DisplayPrincipalConsultaStyled = styled(DisplayPrincipalStyled)`
+    height:auto;
+    
+`
 
 
 export const ContenedorPrincipal = styled.div`
@@ -26,4 +30,11 @@ export const ContenedorPrincipal = styled.div`
     padding: ${props => (props.padding ? '20px' : null)};
     overflow:hidden;
     flex-wrap: wrap;
+`
+
+export const ContenedorConsultas = styled(ContenedorPrincipal) `
+    margin: 60px 0;
+    height: inherit;
+    padding: 10px;
+    overflow: visible;
 `

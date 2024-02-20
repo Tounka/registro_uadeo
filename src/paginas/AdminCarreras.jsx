@@ -7,7 +7,7 @@ import { Formik, Form } from 'formik';
 import { Link } from 'react-router-dom';
 import styled from "styled-components";
 import { collection, addDoc,getDocs, query, orderBy} from 'firebase/firestore';
-import { firestore} from '../firebase'; // Asegúrate de ajustar la ruta correcta
+import { firestore} from '../firebase'; 
 const LinkStyled = styled(Link)`
   text-decoration:none;
 `
@@ -20,11 +20,11 @@ const AdminCarreras = () => {
 
   const handleSubmit = async (values, { setSubmitting, resetForm }) => {
     try {
-      // Agregar el nuevo documento a la colección 'carreras' en Firestore
-      const docRef = await addDoc(collection(firestore, 'carrera'), {
+      
+      await addDoc(collection(firestore, 'carrera'), {
         carrera: values.carrera,
 
-        // Agrega otras propiedades según sea necesario
+   
       });
         
     
@@ -38,7 +38,7 @@ const AdminCarreras = () => {
     }
   };
 
-  const funcion = async (values) => {
+  const obtenerdatos = async (values) => {
     try {
       const matriculaQuery = query(collection(firestore, 'estudiantes'), orderBy("matricula", "asc"));
       const matriculaDocs = await getDocs(matriculaQuery);
@@ -78,10 +78,10 @@ const AdminCarreras = () => {
           
         </Formik>
         <div >
-          <BtnSubmit type="button" texto='Generar Reporte' funcionOnClick={funcion} />
+          <BtnSubmit type="button" texto='Generar Reporte' funcionOnClick={obtenerdatos} />
           <LinkStyled to="/Actualizar">
             <BtnSubmit type='button' texto='Actualizar Datos' />
-        </LinkStyled>
+          </LinkStyled>
         </div>
   
       </ContenedorPrincipal>

@@ -22,7 +22,7 @@ const AdminCarreras = () =>{
           }
       
           // La matrícula no existe, agregar el nuevo documento a la colección 'estudiantes' en Firestore
-          const docRef = await addDoc(collection(firestore, 'estudiantes'), {
+          await addDoc(collection(firestore, 'estudiantes'), {
             matricula: values.Matricula,
             nombre: values.Nombre,
             carrera: values.Carrera,

@@ -6,6 +6,7 @@ import AdminCarreras from '../src/paginas/AdminCarreras.jsx'
 import Registrar from '../src/paginas/Registrar.jsx'
 import Ingresar from '../src/paginas/IngresarRegistro.jsx'
 import Actualizar from '../src/paginas/Actualizar.jsx'
+import Consultas from  './paginas/Consultas.jsx'
 function App() {
   return (
     <div className="App">
@@ -17,6 +18,7 @@ function App() {
           <Route path="Registrar" element={<Registrar />} />
           <Route path="Ingresar" element={<Ingresar />} />
           <Route path="Actualizar" element={<Actualizar />} />
+          <Route path="Consultas" element={<Consultas />} />
         </Route>
       </Routes>
     </BrowserRouter>

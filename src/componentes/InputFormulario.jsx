@@ -3,6 +3,7 @@ import { Field, ErrorMessage, useFormikContext } from 'formik';
 import { useState, useEffect  } from "react";
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase';
+
 const InputFormularioStyled = styled.div`
   display: flex;
   width: 100%;
@@ -50,6 +51,7 @@ export const InputFormulario = ({ textoLbl, type, id, name }) => {
       <label htmlFor={id}>{textoLbl}</label>
       <FieldStyled type={type} id={id} name={name} />
       <ErrorMessage name={name} component="div" />
+      
     </InputFormularioStyled>
   );
 };
@@ -84,6 +86,7 @@ export const SelectComponent = ({ label, name }) => {
             {carrera}
           </option>
         ))}
+        
       </Field>
       <ErrorMessage name={name} component="div" />
     </InputFormularioStyled>
@@ -100,5 +103,7 @@ export const LabelForm = ({Campo, Nombre})=>{
   </InputFormularioStyled>
   );
 }
+
+
 
 
