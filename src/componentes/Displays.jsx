@@ -14,6 +14,8 @@ export const DisplayPrincipalStyled = styled.div`
 `
 export const DisplayPrincipalConsultaStyled = styled(DisplayPrincipalStyled)`
     height:auto;
+    min-height:100%;
+    
     
 `
 

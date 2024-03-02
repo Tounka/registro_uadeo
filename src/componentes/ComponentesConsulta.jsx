@@ -52,7 +52,7 @@ export const BarraSuperiorConsulta = ({ setYear, setMonth, setCarrer, carrer ,mo
 };
 
 export const ContenedorGrid = styled.div`
-  height: 85%;
+  height: 84%;
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -60,16 +60,40 @@ export const ContenedorGrid = styled.div`
   gap: 10px;
 `;
 
-export const CapsulaEstudiantes = styled.div`
+export const CapsulaEstudiantesStyled = styled.div`
   background-color: var(--rojo);
   
   width: 100%;
   height: 100%;
   border-radius: 20px;
   min-height:200px;
-  
+  color: var(--blanco);
+  font-weight: 16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-around;
 `;
-export const CapsulaEstudiantesPrincipal = styled(CapsulaEstudiantes)`
+export const CapsulaEstudiantes = ({nombre, matricula, carrera, numIngresos}) =>{
+  return(
+    <CapsulaEstudiantesStyled>
+        <h2>{nombre}</h2>
+        <p>Matricula: {matricula}</p>
+        <p>Carrera: {carrera}</p>
+        <p>Ingresos: {numIngresos}</p>
+    </CapsulaEstudiantesStyled>
+  );
+} 
+
+export const CapsulaEstudiantesPrincipalStyled = styled(CapsulaEstudiantesStyled)`
    grid-column: 1 / 2;
    grid-row: 1 / 3 ;
 `
+export const CapsulaEstudiantesPrincipal = ({titulo, numIngresos}) =>{
+  return(
+    <CapsulaEstudiantesPrincipalStyled>
+        <h2>{titulo}</h2>
+        
+        <h3>Ingresos: {numIngresos}</h3>
+    </CapsulaEstudiantesPrincipalStyled>
+  );
+} 
