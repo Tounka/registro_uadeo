@@ -44,10 +44,8 @@ const AdminCarreras = () => {
       const matriculaDocs = await getDocs(matriculaQuery);
   
       if (matriculaDocs.docs.length > 0) {
-        console.log(matriculaDocs.docs);
-        matriculaDocs.docs.forEach((documento, index) => {
-          console.log(`Documento ${index}:`, documento.data());
-        });
+        
+
       } else {
         console.log('No se encontraron documentos');
       }

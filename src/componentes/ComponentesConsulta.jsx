@@ -26,7 +26,7 @@ export const BarraSuperiorConsulta = ({ setYear, setMonth, setCarrer, carrer ,mo
   };
 
   useEffect(() => {
-    console.log(carrer, month, year);
+    
   }, [carrer, month, year]);
 
   return (

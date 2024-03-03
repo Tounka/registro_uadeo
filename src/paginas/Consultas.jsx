@@ -8,9 +8,10 @@ import { BarraSuperiorConsulta } from "../componentes/ComponentesConsulta";
 const Consultas = () => {
     const [carrer, setCarrer] = useState("");
     const [year, setYear] = useState(0);
-    const [month, setMonth] = useState(0); // Agregada la variable month
-    const [allData, setAllData] = useState([]); 
+    const [month, setMonth] = useState(0);
+    const [allData, setAllData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
+    const [totalIngresos, setTotalIngresos] = useState(0);
 
     useEffect(() => {
         const obtenerDatos = async () => {
@@ -29,7 +30,7 @@ const Consultas = () => {
                 console.error('Error al obtener documentos:', error.message);
             }
         };
-    
+
         obtenerDatos();
     }, []);
 
@@ -37,83 +38,83 @@ const Consultas = () => {
         filtrarDatos(allData);
     }, [carrer, year, month, allData]);
 
+    useEffect(() => {
+        const total = filteredData.reduce((acc, documento) => {
+            
+            const ingresos = obtenerNumeroDeIngresos(documento.fechaActualizacion);
+            if (!isNaN(ingresos)) {
+                return acc + ingresos;
+            } else {
+                return acc;
+            }
+        }, 0);
+
+        setTotalIngresos(total);
+    }, [filteredData]);
+
     const filtrarDatos = (data) => {
-      let filtered = data;
-  
-      if (carrer !== "") {
-          filtered = filtered.filter(item => item.carrera === carrer);
-      }
-  
-      if (year !== 0 || month !== 0) {
-          filtered = filtered.filter(item => {
-              const fechasActualizacion = Array.isArray(item.fechaActualizacion) ? item.fechaActualizacion : [item.fechaActualizacion];
-  
-              return fechasActualizacion.some(timestamp => {
-                  if (!timestamp) {
-                      return false;
-                  }
-  
-                  // Manejar casos en los que toDate() no está disponible
-                  const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
-  
-                  // Obtener el año y el mes de la fecha
-                  const yearCondition = year === 0 || date.getFullYear() === year;
-                  const monthCondition = month === 0 || date.getMonth() === month - 1;
-  
-                  return yearCondition && monthCondition;
-              });
-          });
-      }
-  
-      setFilteredData(filtered);
-  };
-  
+        let filtered = data;
+
+        if (carrer !== "") {
+            filtered = filtered.filter(item => item.carrera === carrer);
+        }
+
+        if (year !== 0 || month !== 0) {
+            filtered = filtered.filter(item => {
+                const fechasActualizacion = Array.isArray(item.fechaActualizacion) ? item.fechaActualizacion : [item.fechaActualizacion];
+
+                return fechasActualizacion.some(timestamp => {
+                    if (!timestamp) {
+                        return false;
+                    }
+
+                    const date = timestamp.toDate ? timestamp.toDate() : new Date(timestamp.seconds * 1000);
+                    const yearCondition = year === 0 || date.getFullYear() === year;
+                    const monthCondition = month === 0 || date.getMonth() === month - 1;
+
+                    return yearCondition && monthCondition;
+                });
+            });
+        }
+
+        setFilteredData(filtered);
+    };
 
     const obtenerNumeroDeIngresos = (data) => {
         let ingresosConFiltro = 0;
         if (data != null) {
-            
             if (year !== 0 || month !== 0) {
-                const arreglo = data.filter(timestamp => {
-                    // Convertir el timestamp a un objeto Date
-                    const seconds = timestamp.seconds || 0; // Si seconds no está presente, usar 0
-                    const nanoseconds = timestamp.nanoseconds || 0; // Si nanoseconds no está presente, usar 0
-
-                    const fecha = new Date(seconds * 1000 + nanoseconds / 1000000); // Convertir nanosegundos a milisegundos
-    
-        
-                    // Verificar si la fecha pertenece al año 2024
+                data.forEach(timestamp => {
+                    const seconds = timestamp.seconds || 0;
+                    const nanoseconds = timestamp.nanoseconds || 0;
+                    const fecha = new Date(seconds * 1000 + nanoseconds / 1000000);
                     ingresosConFiltro += fecha.getFullYear() === year ? 1 : 0;
-
-          
-          
-                  });
-                  return ingresosConFiltro;
+                });
+                return ingresosConFiltro;
             }
-            
-        
-        }else{
+        } else {
             return 'No tiene ingresos registrados';
         }
-            return(data.length)
-            
-        }
-       
-        
-    const capsulaPrincipalTitulo = () =>{
-        if(carrer != ''){
-            return(carrer);
-        }else{
-            return('Todas las Carreras')
+        return (data.length);
+    }
+
+    const capsulaPrincipalTitulo = () => {
+        if (carrer !== '') {
+            return (carrer);
+        } else {
+            return ('Todas las Carreras')
         }
     }
+
     return (
         <DisplayPrincipalConsultaStyled>
             <ContenedorConsultas>
                 <BarraSuperiorConsulta setYear={setYear} setMonth={setMonth} setCarrer={setCarrer} year={year} month={month} carrer={carrer} />
-                
+
                 <ContenedorGrid>
-                    <CapsulaEstudiantesPrincipal titulo={capsulaPrincipalTitulo()} numIngresos={3}  >asdasd</CapsulaEstudiantesPrincipal>
+                    <CapsulaEstudiantesPrincipal titulo={capsulaPrincipalTitulo()} numIngresos={totalIngresos}>
+                        asdasd
+                    </CapsulaEstudiantesPrincipal>
 
                     {filteredData.map((documento, index) => (
                         <CapsulaEstudiantes key={index} nombre={documento.nombre} matricula={documento.matricula} carrera={documento.carrera} numIngresos={obtenerNumeroDeIngresos(documento.fechaActualizacion)}>
