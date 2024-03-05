@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { DisplayPrincipalConsultaStyled, ContenedorConsultas } from "../componentes/Displays";
+import { TitularPrincipal } from '../componentes/Textos';
+import { BtnSwitchPaginaFlotante } from '../componentes/BotonesPrincipales';
 import { collection, getDocs } from 'firebase/firestore';
 import { firestore } from '../firebase';
 import { ContenedorGrid, CapsulaEstudiantes, CapsulaEstudiantesPrincipal } from '../componentes/ComponentesConsulta';
@@ -108,6 +110,7 @@ const Consultas = () => {
 
     return (
         <DisplayPrincipalConsultaStyled>
+            <BtnSwitchPaginaFlotante texto='Regresar' path='/' />
             <ContenedorConsultas>
                 <BarraSuperiorConsulta setYear={setYear} setMonth={setMonth} setCarrer={setCarrer} year={year} month={month} carrer={carrer} />
 

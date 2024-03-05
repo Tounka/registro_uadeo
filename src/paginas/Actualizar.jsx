@@ -43,7 +43,7 @@ const AdminCarreras = () =>{
     return(
         <DisplayPrincipalStyled>
             <TitularPrincipal texto='Actualizar'/>
-            <BtnSwitchPaginaFlotante texto= 'Regresar' path='/'/>
+            <BtnSwitchPaginaFlotante texto= 'Regresar' path='/AgregarCarrera'/>
             <Formik
                 initialValues={
                     {Matricula:'', Nombre:'', Carrera:'', Semestre: 1}
