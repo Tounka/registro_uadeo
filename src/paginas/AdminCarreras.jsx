@@ -76,7 +76,11 @@ const AdminCarreras = () => {
           
         </Formik>
         <div >
-          <BtnSubmit type="button" texto='Generar Reporte' funcionOnClick={obtenerdatos} />
+        <LinkStyled to="/Consultas">
+            <BtnSubmit type="button" texto='Generar Reporte'  />
+        </LinkStyled>
+
+          
           <LinkStyled to="/Actualizar">
             <BtnSubmit type='button' texto='Actualizar Datos' />
           </LinkStyled>
