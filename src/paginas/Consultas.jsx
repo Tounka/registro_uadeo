@@ -84,21 +84,31 @@ const Consultas = () => {
 
     const obtenerNumeroDeIngresos = (data) => {
         let ingresosConFiltro = 0;
+    
         if (data != null) {
             if (year !== 0 || month !== 0) {
                 data.forEach(timestamp => {
                     const seconds = timestamp.seconds || 0;
                     const nanoseconds = timestamp.nanoseconds || 0;
                     const fecha = new Date(seconds * 1000 + nanoseconds / 1000000);
-                    ingresosConFiltro += fecha.getFullYear() === year ? 1 : 0;
+    
+                    const yearCondition = year === 0 || fecha.getFullYear() === year;
+                    const monthCondition = month === 0 || fecha.getMonth() === month - 1;
+    
+                    if (yearCondition && monthCondition) {
+                        ingresosConFiltro += 1;
+                    }
                 });
+    
                 return ingresosConFiltro;
             }
         } else {
             return 'No tiene ingresos registrados';
         }
-        return (data.length);
+    
+        return data.length;
     }
+    
 
     const capsulaPrincipalTitulo = () => {
         if (carrer !== '') {
