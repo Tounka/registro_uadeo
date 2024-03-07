@@ -24,6 +24,11 @@ export const ContenedorPrincipal = styled.div`
     display:flex;
     justify-content:space-between;
     height: 70%;
+    @media (max-width: 760px) {
+        height: auto;
+        min-height: 75%;
+        justify-content: space-evenly;
+    }
     width:80%;
     background-color: var(--blanco);
     border-radius: 20px;

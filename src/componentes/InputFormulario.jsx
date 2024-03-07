@@ -7,30 +7,51 @@ import { firestore } from '../firebase';
 const InputFormularioStyled = styled.div`
   display: flex;
   width: 100%;
-  margin: 10px 0;
+  margin: 15px 0;
   height: fit-content;
   border-radius: 10px;
   overflow: hidden;
   font-weight: bold;
   font-size: 24px;
 
+  @media (max-width: 760px) {
+      font-size: 22px;
+      flex-direction:column; 
+      
+  }
   label {
     background-color: var(--rojo);
-    padding: 20px;
+    padding:  20px 0;
     color: var(--blanco);
     width: 35%;
+    @media (max-width: 760px) {
+      width: 100%;
+      min-width: 90px;
+      padding:  10px 0;
+  }
   }
   select, .contenedorDato{
     width: 100%;
+    border: none;
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
+    
     background-color: var(--gris);
     color: black;
+
+  }
+  select{
+    @media (max-width: 760px) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    height:50px;
+    }
   }
   .contenedorDato{
     display:flex;
     justify-content:center;
     align-items:center;
+    
   }
 `;
 
@@ -42,6 +63,12 @@ const FieldStyled = styled(Field)`
   padding: 5px;
   border-top-right-radius: 10px;
   border-bottom-right-radius: 10px;
+
+  @media (max-width: 760px) {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+
+    }
   
 `;
 

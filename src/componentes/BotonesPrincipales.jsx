@@ -24,6 +24,7 @@ const BtnSwitchPaginaPrincipalStyled = styled(Link)`
         width: 100%;
         height:50%;
         flex-direction: column;
+        
     }
 `
 export const BtnSwitchPaginaPrincipal = ({bg, color, texto, path}) =>{
@@ -50,6 +51,9 @@ const BtnSwitchPaginaFlotanteStyled = styled(Link)`
     top: 0;
     margin-right: 40px;
     margin-top: 40px;
+    @media (max-width: 768px ) {
+        display:none;
+    }
 `
 export const BtnSwitchPaginaFlotante = ({texto , path}) =>{
     return(
