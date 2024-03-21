@@ -45,3 +45,27 @@ export const ContenedorConsultas = styled(ContenedorPrincipal) `
     padding: 10px;
     overflow: visible;
 `
+const ContenedorFooter = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px 20px ;
+    width: 100%;
+
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    bottom: 0;
+`
+export const Footer = ({textoPrincipalFooter, textoSecundarioFooter}) =>{
+
+    return(
+        <ContenedorFooter>
+            <p className="textoPrincipalF">{textoPrincipalFooter}</p>
+            <p className="textoSecundarioF">{textoSecundarioFooter}</p>
+        </ContenedorFooter>
+    );
+}
+

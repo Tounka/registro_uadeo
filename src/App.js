@@ -7,6 +7,7 @@ import Registrar from '../src/paginas/Registrar.jsx'
 import Ingresar from '../src/paginas/IngresarRegistro.jsx'
 import Actualizar from '../src/paginas/Actualizar.jsx'
 import Consultas from  './paginas/Consultas.jsx'
+import { Footer } from './componentes/Displays.jsx';
 function App() {
   return (
     <div className="App">
@@ -22,6 +23,7 @@ function App() {
         </Route>
       </Routes>
     </BrowserRouter>
+    <Footer textoPrincipalFooter= 'Desarollado por Ramon Castillo' textoSecundarioFooter='Luisarraca@hotmail.com - 6691382961' />
     </div>
   );
 }
