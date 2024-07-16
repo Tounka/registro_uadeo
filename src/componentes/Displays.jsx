@@ -24,10 +24,12 @@ export const ContenedorPrincipal = styled.div`
     display:flex;
     justify-content:space-between;
     height: 70%;
+    
     @media (max-width: 760px) {
         height: auto;
         min-height: 70%;
         justify-content: space-evenly;
+        margin: 0 0 10px 0;
     }
     width:80%;
     background-color: var(--blanco);
