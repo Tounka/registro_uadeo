@@ -26,7 +26,7 @@ export const ContenedorPrincipal = styled.div`
     height: 70%;
     @media (max-width: 760px) {
         height: auto;
-        min-height: 75%;
+        min-height: 70%;
         justify-content: space-evenly;
     }
     width:80%;
